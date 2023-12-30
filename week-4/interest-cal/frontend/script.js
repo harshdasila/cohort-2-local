@@ -1,8 +1,14 @@
+function callCalculate(){ //debouncing
+    clearTimeout(t)
+    let t = setTimeout(()=>{
+        calculateInterest();
+    },100)
+}
 async function calculateInterest(){
     const p = document.getElementById("principleAmount").value;
     const r = document.getElementById("rate").value;
     const t = document.getElementById("time").value;
-    console.log(p,r,t);
+    // console.log(p,r,t);
     const response = await fetch(`http://localhost:3001/interest?principle=${p}&rate=${r}&time=${t}`);
     const data = await response.json();
     const total = data.total;
